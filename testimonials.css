@@ -2,6 +2,8 @@
 
 body.testimonials-page {
   min-height: 100vh;
+  background: linear-gradient(135deg, #e0f2fe 0%, #fef3c7 100%);
+  background-attachment: fixed;
 }
 
 .testimonials-hero {
