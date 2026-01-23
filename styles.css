@@ -630,7 +630,7 @@ body.privacy-choices-page,
 body.ai-info-page,
 body.footer-legal-page {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(249, 250, 251, 0.2) 100%),
-    url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=60');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -640,7 +640,7 @@ body.footer-legal-page {
 /* FAQ page with different background */
 body.faq-page {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(249, 250, 251, 0.2) 100%),
-    url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+    url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=60');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -837,7 +837,7 @@ body.footer-legal-page .section {
 /* FEATURES */
 .features {
   background: linear-gradient(135deg, rgba(255, 244, 214, 0.42) 0%, rgba(255, 228, 170, 0.48) 100%),
-    url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=60');
   background-size: 110%;
   background-position: center;
   background-attachment: fixed;
