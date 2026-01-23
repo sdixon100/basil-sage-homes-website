@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Compare Properties - Side by Side Comparison | Basil & Sage Homes Ladson SC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Compare rental properties side-by-side in Ladson, SC. View features, pricing, and amenities to find your perfect home with Basil & Sage Homes.">
+  <meta name="keywords"
+    content="compare rental homes, property comparison Ladson SC, side by side comparison, rental home features">
+  <meta name="author" content="Basil & Sage Homes">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.basilandsagehomes.com/compare.html">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .compare-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .property-selector {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .property-selector h3 {
+      margin: 0 0 1rem 0;
+      color: #1f2937;
+    }
+
+    .selector-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .property-option {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .property-option:hover {
+      border-color: #3b82f6;
+      background: #f9fafb;
+    }
+
+    .property-option.selected {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+
+    .property-option input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .property-option-info {
+      flex: 1;
+    }
+
+    .property-option-name {
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 0.25rem;
+    }
+
+    .property-option-price {
+      color: #3b82f6;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .compare-button {
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+
+    .sort-controls {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      display: none;
+    }
+
+    .sort-controls.active {
+      display: block;
+    }
+
+    .sort-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .sort-label {
+      font-weight: 600;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sort-select {
+      padding: 0.75rem 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      color: #1f2937;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 200px;
+    }
+
+    .sort-select:hover {
+      border-color: #3b82f6;
+    }
+
+    .sort-select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .comparison-table {
+      display: none;
+    }
+
+    .comparison-table.active {
+      display: block;
+    }
+
+    .comparison-cards {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      overflow-x: auto;
+    }
+
+    .property-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .comparison-cards:has(.property-card:nth-child(2):last-child) .property-card {
+      flex-basis: calc(50% - 0.5rem);
+    }
+
+    .comparison-cards:has(.property-card:nth-child(3):last-child) .property-card {
+      flex-basis: calc(33.333% - 0.667rem);
+    }
+
+    .comparison-cards:has(.property-card:nth-child(4):last-child) .property-card {
+      flex-basis: calc(25% - 0.75rem);
+    }
+
+    .comparison-cards:has(.property-card:nth-child(5):last-child) .property-card {
+      flex-basis: calc(20% - 0.8rem);
+    }
+
+    .comparison-cards:has(.property-card:nth-child(6):last-child) .property-card {
+      flex-basis: calc(16.666% - 0.833rem);
+    }
+
+    .property-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-ribbon {
+      position: absolute;
+      top: 20px;
+      right: -35px;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      padding: 8px 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transform: rotate(45deg);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+    .card-ribbon.popular {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    }
+
+    .card-ribbon.luxury {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 140px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .card-header {
+      padding: 0.75rem;
+      text-align: center;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin: 0 0 0.25rem 0;
+    }
+
+    .card-price {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #3b82f6;
+      margin: 0;
+    }
+
+    .card-body {
+      padding: 0.75rem;
+    }
+
+    .comparison-section {
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0 0 0.5rem 0;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-item {
+      background: #f9fafb;
+      padding: 0.5rem;
+      border-radius: 6px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .info-item:hover {
+      background: #f3f4f6;
+    }
+
+    .info-icon {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-label {
+      font-size: 0.65rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 0.1rem;
+    }
+
+    .info-value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #1f2937;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .detail-value {
+      font-size: 0.75rem;
+      color: #1f2937;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+      border-left: 3px solid #3b82f6;
+      padding: 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .highlight-label {
+      font-size: 0.65rem;
+      color: #1e40af;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .highlight-value {
+      font-size: 0.95rem;
+      color: #1e40af;
+      font-weight: 800;
+    }
+
+    .feature-list {
+      text-align: left;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .feature-list li {
+      padding: 0.25rem 0;
+      color: #4b5563;
+      font-size: 0.75rem;
+    }
+
+    .feature-list li::before {
+      content: "✓ ";
+      color: #10b981;
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .card-actions {
+      padding: 0.75rem;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .card-btn {
+      flex: 1;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .card-btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+    }
+
+    .card-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
+    .card-btn-secondary {
+      background: white;
+      color: #3b82f6;
+      border: 2px solid #3b82f6;
+    }
+
+    .card-btn-secondary:hover {
+      background: #eff6ff;
+      transform: translateY(-2px);
+    }
+
+    .no-selection {
+      display: none;
+      text-align: center;
+      padding: 3rem;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      margin: 2rem auto;
+      max-width: 600px;
+    }
+
+    .no-selection.show {
+      display: block;
+    }
+
+    .no-selection h3 {
+      color: #1f2937;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .no-selection p {
+      color: #6b7280;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .no-selection-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 1200px) {
+      .comparison-cards {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card-title {
+        font-size: 1.2rem;
+      }
+
+      .card-price {
+        font-size: 1.7rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .comparison-cards {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .selector-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-image {
+        height: 200px;
+      }
+
+      .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card-image {
+        height: 180px;
+      }
+
+      .card-actions {
+        flex-direction: column;
+      }
+
+      .card-btn {
+        width: 100%;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body class="compare-page">
+
+    <header class="main-header">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo">
+      </a>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="listings.html" class="nav-link">Properties</a></li>
+          <li><a href="compare.html" class="nav-link">Compare</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="#" class="btn-login">Login</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <header class="hero">
+    <div class="container hero-content">
+      <p class="hero-label">Property Comparison</p>
+      <h1>Compare Properties Side-by-Side</h1>
+      <h2>Find Your Perfect Home</h2>
+      <p class="hero-text">
+        Select multiple properties to compare features, pricing, and amenities side-by-side. Make an informed decision
+        about your next home.
+      </p>
+      <a href="#selector" class="btn btn-primary">Start Comparing</a>
+      <div class="scroll-indicator"></div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section" id="selector">
+      <div class="compare-container">
+        <div class="property-selector">
+          <h3>Select Properties to Compare (Choose 2 or more properties)</h3>
+          <div class="selector-grid" id="propertySelector">
+            <!-- Property options will be populated by JavaScript -->
+          </div>
+          <div class="compare-button">
+            <button id="compareBtn" class="btn btn-primary" disabled>Compare Selected Properties</button>
+          </div>
+        </div>
+
+        <div class="sort-controls" id="sortControls">
+          <div class="sort-header">
+            <div class="sort-label">
+              <span>🔄</span>
+              <span>Sort Properties By:</span>
+            </div>
+            <select id="sortSelect" class="sort-select" onchange="sortProperties()">
+              <option value="default">Default Order</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="newest">Newest Listing (Year Built)</option>
+              <option value="beds-high">Bedrooms: Most to Least</option>
+              <option value="beds-low">Bedrooms: Least to Most</option>
+              <option value="baths-high">Bathrooms: Most to Least</option>
+              <option value="baths-low">Bathrooms: Least to Most</option>
+              <option value="sqft-high">Square Feet: Largest to Smallest</option>
+              <option value="sqft-low">Square Feet: Smallest to Largest</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="comparison-table" id="comparisonTable">
+          <div id="comparisonContent">
+            <!-- Comparison content will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <div class="no-selection" id="noSelection">
+          <div class="no-selection-icon">🏠</div>
+          <h3>No Properties Selected</h3>
+          <p>Please select at least 2 properties above to start comparing.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="legal-footer">
+    <div class="container">
+      <div class="fair-housing-section">
+        <div class="fair-housing-logo">
+          <img src="equal-housing.jpg" alt="Equal Housing Opportunity" class="fair-housing-icon-img">
+          <h3 class="fair-housing-title">Equal Housing Opportunity</h3>
+        </div>
+        <p class="fair-housing-text">
+          Basil & Sage Homes is committed to compliance with Fair Housing laws, including those that prohibit discrimination
+          based on race, color, sex, religion, disability, familial status, national origin, and all other classes
+          protected by applicable federal, state, and/or local law. It's simply the right thing to do.
+        </p>
+      </div>
+
+      <div class="disclaimer-section">
+        <h4 class="disclaimer-title">⚠️ Important Disclaimer</h4>
+        <p class="disclaimer-text">
+          All information provided on this website is subject to change without notice. Property availability, pricing,
+          specifications, features, and amenities are subject to change. Square footage and lot sizes are approximate.
+          Photos may be of similar properties and may not represent the actual property. All properties are subject to
+          prior sale, rental, or withdrawal. Basil & Sage Homes makes no warranty or representation about the accuracy of the
+          information contained herein. Prospective tenants should verify all information independently.
+        </p>
+      </div>
+
+      <div class="legal-links">
+        <a href="terms.html">Terms of Use</a>
+        <a href="privacy.html">Privacy Policy</a>
+        </div>
+
+      <div class="copyright-section">
+        <p>&copy; <span id="legalYear"></span> Basil & Sage Homes. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">📞 (843) 555-0123 | 📧 info@basilandsagehomes.com | 📍 Ladson, SC 29456</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('legalYear').textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    // Property data - Accurate comparisons matching individual property pages
+    const properties = [
+      {
+        id: 'oak',
+        name: '123 Oak Street',
+        price: '$1,850',
+        priceDisplay: '$1,850/month',
+        beds: 3,
+        baths: 2,
+        sqft: '1,450 sqft',
+        status: 'available',
+        statusLabel: 'Available Now',
+        url: 'property-123-oak.html',
+        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        features: ['Move-In Ready', 'Pet Friendly', '2-Car Garage', 'Fenced Yard', 'Updated Kitchen', 'Central HVAC'],
+        deposit: '$1,850',
+        lease: '12 months minimum',
+        parking: '2-car garage',
+        pets: 'Yes (with approval & fee)',
+        utilities: 'Tenant responsible',
+        yearBuilt: '2015',
+        lotSize: '0.25 acres',
+        pricePerSqFt: '$1.28'
+      },
+      {
+        id: 'maple',
+        name: '456 Maple Avenue',
+        price: '$2,100',
+        priceDisplay: '$2,100/month',
+        beds: 4,
+        baths: 2.5,
+        sqft: '1,800 sqft',
+        status: 'popular',
+        statusLabel: 'Popular',
+        url: 'property-456-maple.html',
+        image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        features: ['Updated Kitchen', 'Pool Access', 'Pet Friendly', '2-Car Garage', 'Hardwood Floors', 'Washer/Dryer Included'],
+        deposit: '$2,100',
+        lease: '12 months minimum',
+        parking: '2-car garage',
+        pets: 'Yes (with approval & fee)',
+        utilities: 'Tenant responsible',
+        yearBuilt: '2018',
+        lotSize: '0.30 acres',
+        pricePerSqFt: '$1.17'
+      },
+      {
+        id: 'pine',
+        name: '789 Pine Road',
+        price: '$1,650',
+        priceDisplay: '$1,650/month',
+        beds: 3,
+        baths: 2,
+        sqft: '1,200 sqft',
+        status: 'available',
+        statusLabel: 'Available Now',
+        url: 'property-789-pine.html',
+        image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        features: ['Move-In Ready', 'Hardwood Floors', 'Near Schools', 'Fenced Yard', 'Updated Bathrooms', '1-Car Garage'],
+        deposit: '$1,650',
+        lease: '12 months minimum',
+        parking: '1-car garage + driveway',
+        pets: 'Yes (with approval & fee)',
+        utilities: 'Tenant responsible',
+        yearBuilt: '2012',
+        lotSize: '0.20 acres',
+        pricePerSqFt: '$1.38'
+      },
+      {
+        id: 'cedar',
+        name: '321 Cedar Lane',
+        price: '$2,350',
+        priceDisplay: '$2,350/month',
+        beds: 4,
+        baths: 3,
+        sqft: '2,100 sqft',
+        status: 'luxury',
+        statusLabel: 'Luxury',
+        url: 'property-321-cedar.html',
+        image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        features: ['Premium Finishes', 'Smart Home Tech', '2-Car Garage', 'Private Pool', 'Gourmet Kitchen', 'Spa Bathroom'],
+        deposit: '$2,350',
+        lease: '12 months minimum',
+        parking: '2-car garage',
+        pets: 'Yes (with approval & fee)',
+        utilities: 'Tenant responsible',
+        yearBuilt: '2020',
+        lotSize: '0.40 acres',
+        pricePerSqFt: '$1.12'
+      },
+      {
+        id: 'elm',
+        name: '654 Elm Street',
+        price: '$1,450',
+        priceDisplay: '$1,450/month',
+        beds: 2,
+        baths: 2,
+        sqft: '1,000 sqft',
+        status: 'available',
+        statusLabel: 'Available Now',
+        url: 'property-654-elm.html',
+        image: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        features: ['Cozy Layout', 'Pet Friendly', 'Updated Bathrooms', 'Storage Shed', 'Off-street Parking', 'Low Maintenance'],
+        deposit: '$1,450',
+        lease: '12 months minimum',
+        parking: 'Driveway parking',
+        pets: 'Yes (with approval & fee)',
+        utilities: 'Tenant responsible',
+        yearBuilt: '2010',
+        lotSize: '0.15 acres',
+        pricePerSqFt: '$1.45'
+      },
+      {
+        id: 'birch',
+        name: '987 Birch Drive',
+        price: '$1,950',
+        priceDisplay: '$1,950/month',
+        beds: 3,
+        baths: 2.5,
+        sqft: '1,600 sqft',
+        status: 'available',
+        statusLabel: 'Available Now',
+        url: 'property-987-birch.html',
+        image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        features: ['Open Floor Plan', 'Modern Kitchen', 'Covered Patio', 'Fenced Yard', 'Granite Countertops', '2-Car Garage'],
+        deposit: '$1,950',
+        lease: '12 months minimum',
+        parking: '2-car garage',
+        pets: 'Yes (with approval & fee)',
+        utilities: 'Tenant responsible',
+        yearBuilt: '2017',
+        lotSize: '0.28 acres',
+        pricePerSqFt: '$1.22'
+      }
+    ];
+
+    let selectedProperties = [];
+    let currentSortedProps = [];
+
+    // Sort properties based on selected criteria
+    function sortProperties() {
+      const sortValue = document.getElementById('sortSelect').value;
+      let sortedProps = [...currentSortedProps];
+
+      switch (sortValue) {
+        case 'price-low':
+          sortedProps.sort((a, b) => parseInt(a.price.replace(/\D/g, '')) - parseInt(b.price.replace(/\D/g, '')));
+          break;
+        case 'price-high':
+          sortedProps.sort((a, b) => parseInt(b.price.replace(/\D/g, '')) - parseInt(a.price.replace(/\D/g, '')));
+          break;
+        case 'newest':
+          sortedProps.sort((a, b) => parseInt(b.yearBuilt) - parseInt(a.yearBuilt));
+          break;
+        case 'beds-high':
+          sortedProps.sort((a, b) => b.beds - a.beds);
+          break;
+        case 'beds-low':
+          sortedProps.sort((a, b) => a.beds - b.beds);
+          break;
+        case 'baths-high':
+          sortedProps.sort((a, b) => b.baths - a.baths);
+          break;
+        case 'baths-low':
+          sortedProps.sort((a, b) => a.baths - b.baths);
+          break;
+        case 'sqft-high':
+          sortedProps.sort((a, b) => parseInt(b.sqft.replace(/\D/g, '')) - parseInt(a.sqft.replace(/\D/g, '')));
+          break;
+        case 'sqft-low':
+          sortedProps.sort((a, b) => parseInt(a.sqft.replace(/\D/g, '')) - parseInt(b.sqft.replace(/\D/g, '')));
+          break;
+        default:
+          // Keep original order
+          sortedProps = properties.filter(p => selectedProperties.includes(p.id));
+      }
+
+      currentSortedProps = sortedProps;
+      renderComparisonCards(sortedProps);
+    }
+
+    // Populate property selector
+    function populateSelector() {
+      const selector = document.getElementById('propertySelector');
+      selector.innerHTML = properties.map(prop => `
+      <label class="property-option" for="prop-${prop.id}">
+        <input type="checkbox" id="prop-${prop.id}" onchange="toggleProperty('${prop.id}')">
+        <div class="property-option-info">
+          <div class="property-option-name">${prop.name}</div>
+          <div class="property-option-price">${prop.priceDisplay} • ${prop.beds} bed / ${prop.baths} bath</div>
+        </div>
+      </label>
+    `).join('');
+    }
+
+    // Toggle property selection
+    function toggleProperty(id) {
+      const checkbox = document.getElementById(`prop-${id}`);
+
+      const option = checkbox.closest('.property-option');
+      const isChecked = checkbox.checked;
+
+      if (isChecked) {
+        if (!selectedProperties.includes(id)) {
+          selectedProperties.push(id);
+        }
+        option.classList.add('selected');
+      } else {
+        selectedProperties = selectedProperties.filter(p => p !== id);
+        option.classList.remove('selected');
+      }
+
+      updateCompareButton();
+    }
+
+    // Update compare button state
+    function updateCompareButton() {
+      const btn = document.getElementById('compareBtn');
+      if (selectedProperties.length >= 2) {
+        btn.disabled = false;
+      } else {
+        btn.disabled = true;
+      }
+    }
+
+    // Render comparison cards
+    function renderComparisonCards(selectedProps) {
+      const content = document.getElementById('comparisonContent');
+
+      let html = '<div class="comparison-cards">';
+
+      selectedProps.forEach(prop => {
+        const ribbonClass = prop.status === 'available' ? '' : prop.status;
+
+        html += `
+        <div class="property-card">
+          ${prop.status !== 'available' ? `<div class="card-ribbon ${ribbonClass}">${prop.statusLabel}</div>` : ''}
+          
+          <div class="card-image" style="background-image: url('${prop.image}')"></div>
+          
+          <div class="card-header">
+            <h3 class="card-title">${prop.name}</h3>
+            <div class="card-price">${prop.priceDisplay}</div>
+          </div>
+          
+          <div class="card-body">
+            <!-- Key Specs -->
+            <div class="comparison-section">
+              <h4 class="section-title">Key Specifications</h4>
+              <div class="info-grid">
+                <div class="info-item">
+                  <div class="info-icon">🛏️</div>
+                  <div class="info-label">Bedrooms</div>
+                  <div class="info-value">${prop.beds}</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-icon">🚿</div>
+                  <div class="info-label">Bathrooms</div>
+                  <div class="info-value">${prop.baths}</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-icon">📐</div>
+                  <div class="info-label">Square Feet</div>
+                  <div class="info-value">${prop.sqft}</div>
+                </div>
+                <div class="info-item">
+                  <div class="info-icon">🏡</div>
+                  <div class="info-label">Lot Size</div>
+                  <div class="info-value">${prop.lotSize}</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Property Details -->
+            <div class="comparison-section">
+              <h4 class="section-title">Property Details</h4>
+              <div class="detail-row">
+                <span class="detail-label">Year Built</span>
+                <span class="detail-value">${prop.yearBuilt}</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Security Deposit</span>
+                <span class="detail-value">${prop.deposit}</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Lease Term</span>
+                <span class="detail-value">${prop.lease}</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Parking</span>
+                <span class="detail-value">${prop.parking}</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Pets</span>
+                <span class="detail-value">${prop.pets}</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">Utilities</span>
+                <span class="detail-value">${prop.utilities}</span>
+              </div>
+            </div>
+            
+            <!-- Features -->
+            <div class="comparison-section">
+              <h4 class="section-title">Features & Amenities</h4>
+              <ul class="feature-list">
+                ${prop.features.map(f => `<li>${f}</li>`).join('')}
+              </ul>
+            </div>
+          </div>
+          
+          <div class="card-actions">
+            <a href="${prop.url}" class="card-btn card-btn-primary">View details for ${prop.name}</a>
+            <a href="contact.html" class="card-btn card-btn-secondary">Schedule a tour of ${prop.name}</a>
+          </div>
+        </div>
+      `;
+      });
+
+      html += '</div>';
+
+      content.innerHTML = html;
+    }
+
+    // Generate comparison cards
+    function generateComparison() {
+      const noSelection = document.getElementById('noSelection');
+      const table = document.getElementById('comparisonTable');
+      const sortControls = document.getElementById('sortControls');
+      
+      if (selectedProperties.length < 2) {
+        // Show the no-selection card
+        noSelection.classList.add('show');
+        table.classList.remove('active');
+        sortControls.classList.remove('active');
+        
+        // Scroll to the message
+        noSelection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const selectedProps = properties.filter(p => selectedProperties.includes(p.id));
+      const sortSelect = document.getElementById('sortSelect');
+
+      // Store current selection
+      currentSortedProps = selectedProps;
+
+      // Reset sort to default
+      sortSelect.value = 'default';
+
+      // Render cards
+      renderComparisonCards(selectedProps);
+
+      // Show controls and table, hide no-selection
+      sortControls.classList.add('active');
+      table.classList.add('active');
+      noSelection.classList.remove('show');
+
+      // Scroll to sort controls
+      sortControls.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function () {
+      populateSelector();
+
+      document.getElementById('compareBtn').addEventListener('click', generateComparison);
+    });
+  </script>
+
+  <script type="module" src="scripts.js"></script>
+</body>
+
+</html>

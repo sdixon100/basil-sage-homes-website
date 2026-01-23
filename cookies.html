@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cookies Settings | Basil & Sage Homes Ladson SC</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Manage your cookie preferences and learn how Basil & Sage Homes uses cookies and tracking technologies.">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body class="cookies-page">
+
+    <header class="main-header">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo">
+      </a>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="listings.html" class="nav-link">Properties</a></li>
+          <li><a href="compare.html" class="nav-link">Compare</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="#" class="btn-login">Login</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="policy-content">
+        <h1>Cookies Settings</h1>
+        <p class="last-updated">Last Updated: January 9, 2026</p>
+
+        <p>Cookies are small text files stored on your device that help us provide and improve our services. Use the
+          controls below to manage your cookie preferences.</p>
+
+        <h2>Manage Your Cookie Preferences</h2>
+
+        <div class="cookie-category">
+          <h3>
+            <span>🔒 Essential Cookies</span>
+            <div class="cookie-toggle">
+              <span style="color: #6b7280; font-size: 0.9rem;">Always Active</span>
+              <div class="toggle-switch active disabled"></div>
+            </div>
+          </h3>
+          <p>These cookies are necessary for the website to function and cannot be disabled. They are usually set in
+            response to actions you take, such as setting your privacy preferences, logging in, or filling out forms.
+          </p>
+
+          <table class="cookie-table">
+            <thead>
+              <tr>
+                <th>Cookie Name</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>session_id</td>
+                <td>Maintains your session while browsing</td>
+                <td>Session</td>
+              </tr>
+              <tr>
+                <td>cookie_consent</td>
+                <td>Remembers your cookie preferences</td>
+                <td>1 year</td>
+              </tr>
+              <tr>
+                <td>csrf_token</td>
+                <td>Security protection against attacks</td>
+                <td>Session</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cookie-category">
+          <h3>
+            <span>📊 Analytics Cookies</span>
+            <div class="cookie-toggle">
+              <div class="toggle-switch active" id="analyticsToggle" onclick="toggleCookie('analytics')"></div>
+            </div>
+          </h3>
+          <p>These cookies help us understand how visitors interact with our website by collecting and reporting
+            information anonymously. This helps us improve our website performance and user experience.</p>
+
+          <table class="cookie-table">
+            <thead>
+              <tr>
+                <th>Cookie Name</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>_ga</td>
+                <td>Google Analytics - distinguishes users</td>
+                <td>2 years</td>
+              </tr>
+              <tr>
+                <td>_gid</td>
+                <td>Google Analytics - distinguishes users</td>
+                <td>24 hours</td>
+              </tr>
+              <tr>
+                <td>_gat</td>
+                <td>Google Analytics - throttles request rate</td>
+                <td>1 minute</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cookie-category">
+          <h3>
+            <span>🎯 Marketing Cookies</span>
+            <div class="cookie-toggle">
+              <div class="toggle-switch" id="marketingToggle" onclick="toggleCookie('marketing')"></div>
+            </div>
+          </h3>
+          <p>These cookies track your online activity to help advertisers deliver more relevant advertising or to limit
+            how many times you see an ad. They may be set by us or by third-party providers.</p>
+
+          <table class="cookie-table">
+            <thead>
+              <tr>
+                <th>Cookie Name</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>_fbp</td>
+                <td>Facebook Pixel - tracks conversions</td>
+                <td>3 months</td>
+              </tr>
+              <tr>
+                <td>ads_prefs</td>
+                <td>Stores advertising preferences</td>
+                <td>1 year</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="cookie-category">
+          <h3>
+            <span>⚙️ Functional Cookies</span>
+            <div class="cookie-toggle">
+              <div class="toggle-switch active" id="functionalToggle" onclick="toggleCookie('functional')"></div>
+            </div>
+          </h3>
+          <p>These cookies enable enhanced functionality and personalization, such as remembering your preferences,
+            saved
+            properties, and providing personalized content.</p>
+
+          <table class="cookie-table">
+            <thead>
+              <tr>
+                <th>Cookie Name</th>
+                <th>Purpose</th>
+                <th>Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>user_prefs</td>
+                <td>Stores your website preferences</td>
+                <td>1 year</td>
+              </tr>
+              <tr>
+                <td>saved_properties</td>
+                <td>Remembers your saved property listings</td>
+                <td>6 months</td>
+              </tr>
+              <tr>
+                <td>search_history</td>
+                <td>Stores recent property searches</td>
+                <td>30 days</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="text-align: center; margin: 2rem 0;">
+          <button class="save-button" onclick="savePreferences()">Save My Preferences</button>
+        </div>
+
+        <h2>Additional Information</h2>
+
+        <h3>How to Control Cookies</h3>
+        <p>In addition to using the controls above, you can also manage cookies through your browser settings:</p>
+        <ul>
+          <li><strong>Chrome:</strong> Settings > Privacy and security > Cookies and other site data</li>
+          <li><strong>Firefox:</strong> Options > Privacy & Security > Cookies and Site Data</li>
+          <li><strong>Safari:</strong> Preferences > Privacy > Manage Website Data</li>
+          <li><strong>Edge:</strong> Settings > Cookies and site permissions > Cookies and site data</li>
+        </ul>
+
+        <h3>Impact of Disabling Cookies</h3>
+        <p>Disabling certain cookies may impact your experience:</p>
+        <ul>
+          <li>You may need to re-enter information more frequently</li>
+          <li>Some website features may not work properly</li>
+          <li>Personalized content and recommendations may not be available</li>
+          <li>You may see less relevant advertising</li>
+        </ul>
+
+        <h3>Third-Party Cookies</h3>
+        <p>We use services from trusted third parties that may set their own cookies:</p>
+        <ul>
+          <li><strong>Google Analytics:</strong> Website analytics and performance monitoring</li>
+          <li><strong>Facebook Pixel:</strong> Advertising and conversion tracking</li>
+          <li><strong>Leaflet/OpenStreetMap:</strong> Interactive map functionality</li>
+        </ul>
+
+        <h3>Do Not Track</h3>
+        <p>Some browsers include a "Do Not Track" (DNT) feature. When enabled, we respect this signal and will not track
+          your browsing activity for advertising purposes.</p>
+
+        <h3>Updates to Cookie Policy</h3>
+        <p>We may update this cookie policy from time to time. We will notify you of significant changes by posting a
+          notice on our website.</p>
+
+        <h2>Questions About Cookies?</h2>
+        <p>If you have questions about our use of cookies:</p>
+        <ul>
+          <li><strong>Email:</strong> privacy@basilandsagehomes.com</li>
+          <li><strong>Phone:</strong> (843) 555-0123</li>
+        </ul>
+
+        <div class="info-box">
+          <p><strong>🍪 Cookie Tip:</strong> You can change your cookie preferences at
+            any time by returning to this page. Your choices will be saved and applied immediately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="legal-footer">
+    <div class="container">
+      <div class="fair-housing-section">
+        <div class="fair-housing-logo">
+          <img src="equal-housing.jpg" alt="Equal Housing Opportunity" class="fair-housing-icon-img">
+          <h3 class="fair-housing-title">Equal Housing Opportunity</h3>
+        </div>
+        <p class="fair-housing-text">
+          Basil & Sage Homes is committed to compliance with Fair Housing laws, including those that prohibit discrimination
+          based on race, color, sex, religion, disability, familial status, national origin, and all other classes
+          protected by applicable federal, state, and/or local law. It's simply the right thing to do.
+        </p>
+      </div>
+
+      <div class="disclaimer-section">
+        <h4 class="disclaimer-title">⚠️ Important Disclaimer</h4>
+        <p class="disclaimer-text">
+          All information provided on this website is subject to change without notice. Property availability, pricing,
+          specifications, features, and amenities are subject to change. Square footage and lot sizes are approximate.
+          Photos may be of similar properties and may not represent the actual property. All properties are subject to
+          prior sale, rental, or withdrawal. Basil & Sage Homes makes no warranty or representation about the accuracy of the
+          information contained herein. Prospective tenants should verify all information independently.
+        </p>
+      </div>
+
+      <div class="legal-links">
+        <a href="terms.html">Terms of Use</a>
+        <a href="privacy.html">Privacy Policy</a>
+        </div>
+
+      <div class="copyright-section">
+        <p>&copy; <span id="legalYear"></span> Basil & Sage Homes. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">📞 (843) 555-0123 | 📧 info@basilandsagehomes.com | 📍 Ladson, SC 29456</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('legalYear').textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    // Cookie preference management
+    let cookiePrefs = {
+      analytics: true,
+      marketing: false,
+      functional: true
+    };
+
+    // Load saved preferences
+    function loadPreferences() {
+      const saved = localStorage.getItem('cookiePreferences');
+      if (saved) {
+        cookiePrefs = JSON.parse(saved);
+        updateToggles();
+      }
+    }
+
+    // Toggle cookie category
+    function toggleCookie(category) {
+      cookiePrefs[category] = !cookiePrefs[category];
+      updateToggles();
+    }
+
+    // Update toggle UI
+    function updateToggles() {
+      document.getElementById('analyticsToggle').classList.toggle('active', cookiePrefs.analytics);
+      document.getElementById('marketingToggle').classList.toggle('active', cookiePrefs.marketing);
+      document.getElementById('functionalToggle').classList.toggle('active', cookiePrefs.functional);
+    }
+
+    // Save preferences
+    function savePreferences() {
+      localStorage.setItem('cookiePreferences', JSON.stringify(cookiePrefs));
+      alert('Your cookie preferences have been saved!');
+    }
+
+    // Initialize
+    loadPreferences();
+  </script>
+
+  <script type="module" src="scripts.js"></script>
+</body>
+
+</html>

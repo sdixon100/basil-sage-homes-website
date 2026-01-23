@@ -1,0 +1,151 @@
+<!-- Copy this entire block and paste before </body> tag on all pages -->
+
+<!-- Legal Footer with Fair Housing & Disclaimer -->
+<style>
+  .legal-footer {
+    background: #1f2937;
+    color: #d1d5db;
+    padding: 3rem 0 1rem;
+  }
+  
+  .fair-housing-section {
+    background: #374151;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border-left: 4px solid #3b82f6;
+  }
+  
+  .fair-housing-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .fair-housing-icon {
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  
+  .fair-housing-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+  }
+  
+  .fair-housing-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #d1d5db;
+    margin: 0;
+  }
+  
+  .disclaimer-section {
+    background: #374151;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+  
+  .disclaimer-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 0.75rem 0;
+  }
+  
+  .disclaimer-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #d1d5db;
+    margin: 0;
+  }
+  
+  .legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid #4b5563;
+    border-bottom: 1px solid #4b5563;
+    margin-bottom: 1.5rem;
+  }
+  
+  .legal-links a {
+    color: #93c5fd;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  
+  .legal-links a:hover {
+    color: #60a5fa;
+    text-decoration: underline;
+  }
+  
+  .copyright-section {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #9ca3af;
+  }
+  
+  @media (max-width: 768px) {
+    .fair-housing-logo {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .legal-links {
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+  }
+</style>
+
+<div class="legal-footer">
+  <div class="container">
+    <div class="fair-housing-section">
+      <div class="fair-housing-logo">
+        <div class="fair-housing-icon">🏠</div>
+        <h3 class="fair-housing-title">Equal Housing Opportunity</h3>
+      </div>
+      <p class="fair-housing-text">
+        Basil and Sage Homes is committed to compliance with all federal, state, and local fair housing laws. We are pledged to the letter and spirit of U.S. policy for the achievement of equal housing opportunity throughout the Nation. We encourage and support an affirmative advertising and marketing program in which there are no barriers to obtaining housing because of race, color, religion, sex, handicap, familial status, or national origin.
+      </p>
+    </div>
+    
+    <div class="disclaimer-section">
+      <h4 class="disclaimer-title">⚠️ Important Disclaimer</h4>
+      <p class="disclaimer-text">
+        All information provided on this website is subject to change without notice. Property availability, pricing, specifications, features, and amenities are subject to change. Square footage and lot sizes are approximate. Photos may be of similar properties and may not represent the actual property. All properties are subject to prior sale, rental, or withdrawal. Basil and Sage Homes makes no warranty or representation about the accuracy of the information contained herein. Prospective tenants should verify all information independently.
+      </p>
+    </div>
+    
+    <div class="legal-links">
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="ai-info.html">AI Info Hub</a>
+      <a href="privacy-choices.html">Your Privacy Choices</a>
+      <a href="cookies.html">Cookies Settings</a>
+    </div>
+    
+    <div class="copyright-section">
+      <p>&copy; <span id="legalYear"></span> Basil and Sage Homes. All rights reserved.</p>
+      <p style="margin-top: 0.5rem;">📞 (843) 555-0123 | 📧 info@basilandsagehomes.com | 📍 Ladson, SC 29456</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('legalYear').textContent = new Date().getFullYear();
+</script>

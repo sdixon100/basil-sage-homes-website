@@ -1,0 +1,4 @@
+include:
+  - .htaccess
+  - robots.txt
+  - sitemap.xml

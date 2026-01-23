@@ -1,0 +1,24 @@
+{
+  "name": "basil-sage-homes-website",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Basil & Sage Homes - Professional Property Management Website",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "keywords": [
+    "real-estate",
+    "property-management",
+    "rental-homes"
+  ],
+  "author": "Basil & Sage Homes",
+  "license": "MIT",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
+}

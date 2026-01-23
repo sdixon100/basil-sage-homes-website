@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Dashboard | Basil & Sage Homes</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .crm-container {
+            margin-top: 100px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .crm-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .crm-table th,
+        .crm-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .crm-table th {
+            background: #1e40af;
+            color: white;
+            font-weight: 600;
+        }
+
+        .crm-table tr:hover {
+            background: #f9fafb;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-yes {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-no {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .nav-crm {
+            background: #1e40af;
+            padding: 1rem;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-crm a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body class="about-page">
+      <header class="main-header">
+    <nav class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo">
+      </a>
+      <button class="mobile-menu-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-menu">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="listings.html" class="nav-link">Properties</a></li>
+          <li><a href="compare.html" class="nav-link">Compare</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="testimonials.html" class="nav-link">Testimonials</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="#" class="btn-login">Login</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <div class="container crm-container">
+        <h1>Lead Capture Dashboard</h1>
+        <p>Real-time list of potential tenants captured via the hero page chat box.</p>
+
+        <div id="leads-loading">Loading leads...</div>
+
+        <table class="crm-table" id="crm-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Found Home?</th>
+                    <th>Location</th>
+                    <th>Wants Tour?</th>
+                </tr>
+            </thead>
+            <tbody id="leads-body">
+                <!-- Leads will be injected here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function fetchLeads() {
+            const loading = document.getElementById('leads-loading');
+            const table = document.getElementById('crm-table');
+            const body = document.getElementById('leads-body');
+
+            try {
+                const response = await fetch('http://localhost:3000/api/leads');
+                const leads = await response.json();
+
+                body.innerHTML = '';
+                leads.reverse().forEach(lead => {
+                    const row = document.createElement('tr');
+                    const date = new Date(lead.createdAt).toLocaleDateString() + ' ' + new Date(lead.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    row.innerHTML = `
+                        <td>${date}</td>
+                        <td><strong>${lead.name}</strong></td>
+                        <td>${lead.email || '-'}</td>
+                        <td>${lead.phone || '-'}</td>
+                        <td><span class="status-badge status-${lead.foundHome?.toLowerCase() === 'yes' ? 'yes' : 'no'}">${lead.foundHome || 'No'}</span></td>
+                        <td>${lead.location || '-'}</td>
+                        <td><span class="status-badge status-${lead.wantsTour?.toLowerCase() === 'yes' ? 'yes' : 'no'}">${lead.wantsTour || 'No'}</span></td>
+                    `;
+                    body.appendChild(row);
+                });
+
+                loading.style.display = 'none';
+                table.style.display = 'table';
+            } catch (error) {
+                console.error('Error fetching leads:', error);
+                loading.textContent = 'Error loading leads. Is the server running?';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchLeads);
+    </script>
+</body>
+
+</html>

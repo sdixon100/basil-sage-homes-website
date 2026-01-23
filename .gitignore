@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+server/node_modules/
+
+# Environment variables
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Database
+*.db
+server/*.db
+
+# Vite
+dist/
+dist-ssr/
+*.local
+public/.htaccess
+public/robots.txt
+public/sitemap.xml
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Build output
+build/
+
+# Temporary files
+*.tmp
+*.temp
+
+# SSL Certificates - Private Keys (NEVER COMMIT)
+ssl/*.key
+ssl/*.pfx
+ssl/*.p12
+*.key
+*.pfx
+*.p12

@@ -1,0 +1,19 @@
+# Basil & Sage Homes Website
+
+## About This Website
+This is a Real Estate website for Basil & Sage Homes, a professional property management company serving rental homes in Ladson, South Carolina.
+Website: www.basilandsagehomes.com
+
+## Design & Development
+Designed by Scott Dixon, a Creative Web and Application Designer living in Charleston, South Carolina.
+Website: www.scottdixoncreative.com
+
+## Website Purpose
+- Property listings and rental home information
+- Tenant testimonials and reviews
+- Property comparison tools
+- Contact and inquiry forms
+- About the company and services
+
+## Technology
+Built with HTML, CSS, and JavaScript featuring modern web design with iOS-style glass effects, responsive layouts, and dynamic animations.
