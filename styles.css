@@ -429,28 +429,44 @@ body.home-page .hero-text-card .btn {
 }
 
 .hero-logo {
-  width: 250px;
-  height: auto;
+  width: 225px;
+  height: 225px;
+  object-fit: contain;
+  border-radius: 50%;
   position: absolute;
-  top: 140px;
-  left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+  top: 110px;
+  left: max(1rem, calc(50% - 700px + 1rem));
   z-index: 10;
-  filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  background: white;
+  padding: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease;
+}
+
+.hero-logo:hover {
+  transform: scale(1.02);
 }
 
 @media (max-width: 1024px) {
   .hero-logo {
-    width: 200px;
-    left: 2rem;
+    width: 180px;
+    height: 180px;
+    left: 1.5rem;
+    top: 100px;
   }
 }
 
 @media (max-width: 768px) {
   .hero-logo {
-    width: 150px;
-    top: 100px;
+    width: 140px;
+    height: 140px;
+    top: 90px;
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .hero-logo:hover {
+    transform: translateX(-50%) scale(1.02);
   }
 }
 
