@@ -197,13 +197,13 @@ body {
 
 .nav-link:hover,
 .nav-link.active {
-  /* User Request: Light Blue Hover */
-  color: #60a5fa;
+  /* User Request: Dark text for sufficient contrast */
+  color: #1e40af;
 }
 
 .main-header.scrolled .nav-link:hover,
 .main-header.scrolled .nav-link.active {
-  color: #60a5fa;
+  color: #1e40af;
 }
 
 .nav-link:hover::after,
@@ -426,6 +426,39 @@ body.home-page .hero-text-card .btn {
   color: rgba(255, 255, 255, 0.98);
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   line-height: var(--line-height-normal);
+}
+
+.hero-logo {
+  width: 250px;
+  height: auto;
+  position: absolute;
+  top: 140px;
+  left: max(2rem, calc((100vw - 1400px) / 2 + 2rem));
+  z-index: 10;
+  filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@media (max-width: 1024px) {
+  .hero-logo {
+    width: 200px;
+    left: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-logo {
+    width: 150px;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Hide Nav Logo on Home Page since we have the big hero logo */
+body.home-page .nav-logo {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .hero-text {
