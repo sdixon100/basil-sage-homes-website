@@ -1,24 +1,79 @@
 // Testimonials Slider Functionality
-document.addEventListener('DOMContentLoaded', async function() {
+document.addEventListener('DOMContentLoaded', async function () {
   const sliderTrack = document.querySelector('.slider-track');
   const prevBtn = document.querySelector('.prev-btn');
   const nextBtn = document.querySelector('.next-btn');
   const dotsContainer = document.querySelector('.slider-dots');
-  
+
   let currentIndex = 0;
   let totalSlides = 0;
   let autoPlayInterval;
   let testimonialCards = [];
 
+  // Fallback testimonials data in case JSON file fails to load
+  const FALLBACK_TESTIMONIALS = [
+    {
+      "id": 1,
+      "name": "Sarah Martinez",
+      "initials": "SM",
+      "rating": 5,
+      "date": "December 2025",
+      "text": "We've been renting from Basil & Sage Homes for over two years now, and it's been an exceptional experience. The maintenance team is incredibly responsive - any issues are addressed within 24 hours. The home was move-in ready and exactly as described. Highly recommend!"
+    },
+    {
+      "id": 2,
+      "name": "James Thompson",
+      "initials": "JT",
+      "rating": 5,
+      "date": "November 2025",
+      "text": "Professional management team that truly cares about their tenants. The application process was smooth and transparent. They were very accommodating with our pets and the neighborhood is perfect for our family. Best rental experience we've had!"
+    },
+    {
+      "id": 3,
+      "name": "Emily Chen",
+      "initials": "EC",
+      "rating": 5,
+      "date": "October 2025",
+      "text": "As a first-time renter, I was nervous about the process, but Basil & Sage Homes made everything so easy. Their team answered all my questions promptly and the home is beautiful and well-maintained. The location is perfect for commuting to Charleston!"
+    },
+    {
+      "id": 4,
+      "name": "Michael Johnson",
+      "initials": "MJ",
+      "rating": 4.5,
+      "date": "September 2025",
+      "text": "Great property management company! They're very professional and the rent is reasonable for the quality of home you get. The only minor issue was a small delay in getting the AC fixed during summer, but they provided a temporary unit immediately. Overall, very satisfied!"
+    },
+    {
+      "id": 5,
+      "name": "Lisa Rodriguez",
+      "initials": "LR",
+      "rating": 5,
+      "date": "August 2025",
+      "text": "Moving from out of state was stressful, but Basil & Sage Homes made it seamless. They did a virtual tour for us and everything was exactly as shown. The neighborhood is safe and quiet, perfect for raising kids. We couldn't be happier with our choice!"
+    },
+    {
+      "id": 6,
+      "name": "David Williams",
+      "initials": "DW",
+      "rating": 5,
+      "date": "July 2025",
+      "text": "Excellent service from start to finish. The property was spotless when we moved in, and the management team has been incredibly helpful with any questions. The online portal for rent payments is super convenient. Highly recommend to anyone looking in the Ladson area!"
+    }
+  ];
+
   // Load testimonials data from JSON
   async function loadTestimonials() {
     try {
       const response = await fetch('testimonials-data.json');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       return data.testimonials;
     } catch (error) {
-      console.error('Error loading testimonials:', error);
-      return [];
+      console.warn('Testimonial JSON failed to load, using embedded fallback data:', error);
+      return FALLBACK_TESTIMONIALS;
     }
   }
 
@@ -27,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     let starsHTML = '';
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
-    
+
     for (let i = 0; i < fullStars; i++) {
       starsHTML += '<span class="star filled">★</span>';
     }
@@ -66,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   // Initialize testimonials
   const testimonials = await loadTestimonials();
-  
+
   if (testimonials.length === 0) {
     console.error('No testimonials loaded');
     return;
@@ -84,12 +139,12 @@ document.addEventListener('DOMContentLoaded', async function() {
       dot.classList.add('slider-dot');
       dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
       if (i === 0) dot.classList.add('active');
-      
+
       dot.addEventListener('click', () => {
         goToSlide(i);
         resetAutoPlay();
       });
-      
+
       dotsContainer.appendChild(dot);
     }
   }
@@ -227,10 +282,14 @@ document.addEventListener('DOMContentLoaded', async function() {
       if (entry.isIntersecting) {
         const ratingFills = entry.target.querySelectorAll('.rating-fill');
         ratingFills.forEach(fill => {
-          const width = fill.style.width;
-          fill.style.width = '0%';
+          const originalWidth = fill.style.width;
+          fill.style.transform = 'scaleX(0)';
           setTimeout(() => {
-            fill.style.width = width;
+            // Convert percentage width string to a scale value (e.g. "78%" -> 0.78)
+            const scale = parseFloat(originalWidth) / 100;
+            fill.style.transform = `scaleX(${scale})`;
+            // Keep the width set to 100% so scaleX represents the actual percentage
+            fill.style.width = '100%';
           }, 100);
         });
         observer.unobserve(entry.target);
