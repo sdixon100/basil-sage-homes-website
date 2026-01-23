@@ -327,7 +327,7 @@ body {
   color: white;
   padding: 3rem 0;
   background: linear-gradient(135deg, rgba(62, 46, 24, 0.48) 0%, rgba(138, 106, 50, 0.48) 100%),
-    url('charleston-sc.webp') center/cover no-repeat;
+    url('/charleston-sc.webp') center/cover no-repeat;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -2954,7 +2954,7 @@ body .footer .container {
   font-size: 0.8125rem;
 }
 
-.slider-track {
+.demo-slider-track {
   position: relative;
   height: 4px;
   background: #e5e7eb;
