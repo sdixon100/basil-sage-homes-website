@@ -156,6 +156,28 @@ body {
   filter: none;
 }
 
+/* Header Branding Text */
+.header-branding {
+  display: flex;
+  flex-direction: column;
+  margin-left: 0.75rem;
+}
+
+.header-brand-name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e40af;
+  line-height: 1.2;
+}
+
+.header-brand-tagline {
+  font-size: 0.7rem;
+  color: #6b7280;
+  font-weight: 400;
+  line-height: 1.3;
+  max-width: 220px;
+}
+
 .nav-menu {
   display: flex;
   align-items: center;
@@ -297,6 +319,12 @@ body {
 
 /* Mobile Responsive Styles */
 @media (max-width: 1023px) {
+
+  /* Hide header branding on mobile to save space */
+  .header-branding {
+    display: none;
+  }
+
   .mobile-menu-btn {
     display: flex;
     flex-direction: column;
@@ -380,18 +408,33 @@ body {
     font-size: 1rem;
   }
 
-  /* Hamburger Animation */
+  /* Hamburger Animation - Smaller X that stays in viewport */
+  .mobile-menu-btn.active {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1002;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .mobile-menu-btn.active span {
+    width: 18px;
+    height: 2px;
+    margin: 4px auto;
+  }
+
   .mobile-menu-btn.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
+    transform: rotate(45deg) translate(4px, 4px);
   }
 
   .mobile-menu-btn.active span:nth-child(2) {
     opacity: 0;
-    transform: translateX(-10px);
+    transform: translateX(-8px);
   }
 
   .mobile-menu-btn.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    transform: rotate(-45deg) translate(4px, -4px);
   }
 
   /* Add mobile menu header with close button */
@@ -568,12 +611,7 @@ body.home-page .hero-text-card .btn {
   }
 }
 
-/* Hide Nav Logo on Home Page since we have the big hero logo */
-body.home-page .nav-logo {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
+/* Nav Logo is now visible on all pages including home page */
 
 .hero-text {
   font-size: 1.1rem;
