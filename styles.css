@@ -2536,34 +2536,34 @@ body .footer .container {
 
 /* Standardized Legal Page Content Styles */
 .policy-content {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   max-width: 800px;
   margin: 0 auto;
   padding: 3rem;
   border-radius: 12px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .policy-content h1 {
-  color: #d4af37;
+  color: #1e3a8a;
   font-size: 2.25rem;
   margin-bottom: 0.5rem;
-  border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+  border-bottom: 2px solid rgba(30, 64, 175, 0.3);
   padding-bottom: 1rem;
 }
 
 .policy-content h2 {
-  color: #d4af37;
+  color: #1e40af;
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-size: 1.5rem;
 }
 
 .policy-content h3 {
-  color: #d4af37;
+  color: #1e40af;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   font-size: 1.25rem;
@@ -2571,7 +2571,7 @@ body .footer .container {
 
 .policy-content p,
 .policy-content li {
-  color: #ffffff;
+  color: #1f2937;
   line-height: 1.8;
   font-size: 1.05rem;
   margin-bottom: 1rem;
@@ -2588,16 +2588,16 @@ body .footer .container {
 }
 
 .policy-content a {
-  color: #ffffff;
+  color: #1e40af;
   text-decoration: underline;
 }
 
 .policy-content a:hover {
-  color: #d4af37;
+  color: #1e3a8a;
 }
 
 .policy-content .last-updated {
-  color: #ffffff;
+  color: #6b7280;
   font-style: italic;
   font-size: 0.9rem;
   margin-bottom: 2rem;
@@ -3072,12 +3072,12 @@ body .footer .container {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: rgba(59, 130, 246, 0.75);
+  background: rgba(30, 64, 175, 0.95);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-radius: 12px;
   padding: 0.875rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 0 0 1px rgba(255, 255, 255, 0.2);
   z-index: 1000;
   max-width: 240px;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -3135,7 +3135,7 @@ body .footer .container {
   color: #ffffff;
   font-weight: 700;
   flex: 1;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .demo-minimize-btn {
@@ -3182,10 +3182,10 @@ body .footer .container {
 }
 
 .demo-description {
-  color: rgba(255, 255, 255, 0.95);
+  color: #ffffff;
   font-size: 0.8125rem;
   margin-bottom: 0.75rem;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .scene-slider-container {
@@ -3216,13 +3216,13 @@ body .footer .container {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 8px;
   transition: all 0.3s ease;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .scene-option input[type="radio"]:checked+.scene-label {
