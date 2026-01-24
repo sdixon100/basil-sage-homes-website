@@ -6,16 +6,22 @@
   <title>Budget-Friendly Rentals - Basil & Sage Homes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Affordable rental homes in Ladson, SC by Basil & Sage Homes. Competitive rates, transparent pricing, no hidden fees. Quality homes that fit your budget.">
+    content="Discover budget-friendly rental homes in Ladson, SC by Basil & Sage Homes. Quality housing that fits your lifestyle.">
+
+  <!-- Preload critical assets to improve LCP -->
+  <link rel="preload" href="charleston-sc.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="budget-friendly-page">
 
-    <header class="main-header">
+  <header class="main-header">
     <nav class="nav-container">
       <a href="index.html" class="nav-logo">
-        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo">
+        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo" fetchpriority="high" data-eager>
       </a>
       <button class="mobile-menu-btn" aria-label="Toggle menu">
         <span></span>
@@ -39,6 +45,8 @@
   </header>
 
   <header class="hero">
+    <!-- PRIMARY LCP IMAGE - High Priority, Discoverable, Not lazy-loaded -->
+    <img src="charleston-sc.webp" alt="" class="hero-lcp-image" fetchpriority="high">
     <div class="container hero-content">
       <p class="hero-label">Affordable Quality</p>
       <h1>Budget-Friendly Rentals</h1>
@@ -60,7 +68,8 @@
         <div class="about-content">
           <div class="about-text">
             <h3>Transparent, Fair, and Competitive</h3>
-            <p>At Basil & Sage Homes, we believe in transparent pricing that provides exceptional value. Our rental rates are
+            <p>At Basil & Sage Homes, we believe in transparent pricing that provides exceptional value. Our rental
+              rates are
               carefully calculated based on market analysis, property features, and the quality we provide.</p>
             <p>We never charge hidden fees or surprise charges. What you see in your lease agreement is exactly what
               you'll pay - no last-minute additions or unexpected costs.</p>
@@ -68,9 +77,10 @@
               high standards our residents expect and deserve.</p>
           </div>
           <div class="about-image">
-            <img src="https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg?auto=compress&cs=tinysrgb&w=800"
-                 alt="Calculator and financial planning documents on desk"
-                 style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <img
+              src="https://images.pexels.com/photos/6963944/pexels-photo-6963944.jpeg?auto=compress&cs=tinysrgb&w=800"
+              alt="Calculator and financial planning documents on desk"
+              style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
           </div>
         </div>
       </div>
@@ -113,7 +123,8 @@
           <div class="feature-card">
             <div class="feature-icon">🔐</div>
             <h3>Security Features</h3>
-            <p>Basic security measures and safety features included. Peace of mind comes standard with every Basil and Sage
+            <p>Basic security measures and safety features included. Peace of mind comes standard with every Basil and
+              Sage
               Homes property.</p>
           </div>
         </div>
@@ -126,7 +137,8 @@
         <div class="about-content">
           <div class="about-text">
             <h3>Transparent Pricing Promise</h3>
-            <p>We believe in complete transparency when it comes to pricing. Here's what you'll NEVER find with Basil and Sage
+            <p>We believe in complete transparency when it comes to pricing. Here's what you'll NEVER find with Basil
+              and Sage
               Homes:</p>
             <ul style="color: #6b7280; line-height: 1.8;">
               <li>❌ Hidden administrative fees</li>
@@ -146,9 +158,10 @@
             <a href="faq.html" class="btn btn-primary">View Pricing FAQ</a>
           </div>
           <div class="about-image">
-            <img src="https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=800"
-                 alt="Person reviewing transparent lease agreement and contract"
-                 style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <img
+              src="https://images.pexels.com/photos/4386431/pexels-photo-4386431.jpeg?auto=compress&cs=tinysrgb&w=800"
+              alt="Person reviewing transparent lease agreement and contract"
+              style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
           </div>
         </div>
       </div>
@@ -203,7 +216,8 @@
           <h3 class="fair-housing-title">Equal Housing Opportunity</h3>
         </div>
         <p class="fair-housing-text">
-          Basil & Sage Homes is committed to compliance with Fair Housing laws, including those that prohibit discrimination
+          Basil & Sage Homes is committed to compliance with Fair Housing laws, including those that prohibit
+          discrimination
           based on race, color, sex, religion, disability, familial status, national origin, and all other classes
           protected by applicable federal, state, and/or local law. It's simply the right thing to do.
         </p>
@@ -215,7 +229,8 @@
           All information provided on this website is subject to change without notice. Property availability, pricing,
           specifications, features, and amenities are subject to change. Square footage and lot sizes are approximate.
           Photos may be of similar properties and may not represent the actual property. All properties are subject to
-          prior sale, rental, or withdrawal. Basil & Sage Homes makes no warranty or representation about the accuracy of the
+          prior sale, rental, or withdrawal. Basil & Sage Homes makes no warranty or representation about the accuracy
+          of the
           information contained herein. Prospective tenants should verify all information independently.
         </p>
       </div>
@@ -223,7 +238,7 @@
       <div class="legal-links">
         <a href="terms.html">Terms of Use</a>
         <a href="privacy.html">Privacy Policy</a>
-        </div>
+      </div>
 
       <div class="copyright-section">
         <p>&copy; <span id="legalYear"></span> Basil & Sage Homes. All rights reserved.</p>

@@ -13,6 +13,11 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.basilandsagehomes.com/about.html">
 
+  <!-- Preload critical assets to improve LCP -->
+  <link rel="preload" href="charleston-sc.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml">
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.basilandsagehomes.com/about.html">
@@ -57,7 +62,7 @@
   <header class="main-header">
     <nav class="nav-container">
       <a href="index.html" class="nav-logo">
-        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo">
+        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo" fetchpriority="high" data-eager>
         <div class="header-branding">
           <span class="header-brand-name">Basil & Sage Homes</span>
           <span class="header-brand-tagline">(A demonstration website for testing website performance.)</span>
@@ -85,7 +90,10 @@
   </header>
 
   <header class="hero" id="hero-section">
-    <video autoplay muted loop playsinline class="hero-video" id="hero-video" preload="none" poster="charleston-sc.webp"
+    <!-- PRIMARY LCP IMAGE - High Priority, Discoverable, Not lazy-loaded -->
+    <img src="charleston-sc.webp" alt="" class="hero-lcp-image" fetchpriority="high">
+    <video autoplay muted loop playsinline class="hero-video" id="hero-video" preload="auto" poster="charleston-sc.webp" fetchpriority="high"
+      fetchpriority="high"
       aria-label="Decorative background video showing beautiful homes in Charleston, South Carolina">
       <source
         src="https://player.vimeo.com/external/371433846.hd.mp4?s=c6a7fc0e9c1e8b4a5d7c3f3f5a8f6f3f3f5a8f6f&profile_id=174"

@@ -6,16 +6,22 @@
   <title>Pet-Friendly Rentals - Basil & Sage Homes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Pet-friendly rental homes in Ladson, SC by Basil & Sage Homes. Most properties welcome pets with reasonable fees and clear guidelines.">
+    content="Find pet-friendly rental homes in Ladson, SC with Basil & Sage Homes. We welcome your furry family members with our pet-friendly policies.">
+
+  <!-- Preload critical assets to improve LCP -->
+  <link rel="preload" href="charleston-sc.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="pet-friendly-page">
 
-    <header class="main-header">
+  <header class="main-header">
     <nav class="nav-container">
       <a href="index.html" class="nav-logo">
-        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo">
+        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo" fetchpriority="high" data-eager>
       </a>
       <button class="mobile-menu-btn" aria-label="Toggle menu">
         <span></span>
@@ -39,6 +45,8 @@
   </header>
 
   <header class="hero">
+    <!-- PRIMARY LCP IMAGE - High Priority, Discoverable, Not lazy-loaded -->
+    <img src="charleston-sc.webp" alt="" class="hero-lcp-image" fetchpriority="high">
     <div class="container hero-content">
       <p class="hero-label">Pets Welcome</p>
       <h1>Pet-Friendly Homes</h1>
@@ -60,7 +68,8 @@
         <div class="about-content">
           <div class="about-text">
             <h3>Pets Are Family Too</h3>
-            <p>At Basil & Sage Homes, we understand that pets are cherished members of your family. That's why we've made
+            <p>At Basil & Sage Homes, we understand that pets are cherished members of your family. That's why we've
+              made
               most of our properties pet-friendly, allowing you to find a home where both you and your furry companions
               can thrive.</p>
             <p>We believe that responsible pet owners make excellent residents, and we've designed our pet policies to
@@ -70,9 +79,10 @@
               guidelines designed to ensure the comfort and safety of all residents.</p>
           </div>
           <div class="about-image">
-            <img src="https://images.pexels.com/photos/4490129/pexels-photo-4490129.jpeg?auto=compress&cs=tinysrgb&w=800"
-                 alt="Dog relaxing comfortably in modern home interior"
-                 style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <img
+              src="https://images.pexels.com/photos/4490129/pexels-photo-4490129.jpeg?auto=compress&cs=tinysrgb&w=800"
+              alt="Dog relaxing comfortably in modern home interior"
+              style="width: 100%; height: 400px; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
           </div>
         </div>
       </div>
@@ -127,9 +137,10 @@
         <h2>Pet Requirements & Guidelines</h2>
         <div class="about-content">
           <div class="about-image">
-            <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=800"
-                 alt="Responsible pet owner with dog on leash outdoors"
-                 style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <img
+              src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=800"
+              alt="Responsible pet owner with dog on leash outdoors"
+              style="width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
           </div>
           <div class="about-text">
             <h3>Keeping Everyone Happy & Safe</h3>
@@ -159,44 +170,47 @@
     <section class="section" style="background-color: #f9fafb;">
       <div class="container">
         <h2>Pet-Friendly Homes Gallery</h2>
-        <p style="text-align: center; color: #6b7280; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-          See our beautiful homes where pets and their families live happily together. Spacious yards, comfortable interiors, and pet-friendly features.
+        <p
+          style="text-align: center; color: #6b7280; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+          See our beautiful homes where pets and their families live happily together. Spacious yards, comfortable
+          interiors, and pet-friendly features.
         </p>
         <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
           <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80" 
-                 alt="Dog in spacious backyard of rental home" 
-                 style="width: 100%; height: 250px; object-fit: cover; display: block;">
+            <img src="https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?auto=format&fit=crop&w=800&q=80"
+              alt="Dog in spacious backyard of rental home"
+              style="width: 100%; height: 250px; object-fit: cover; display: block;">
             <div style="padding: 1rem; background: white;">
               <h4 style="margin: 0 0 0.5rem 0; color: #1f2937;">Spacious Backyards</h4>
               <p style="margin: 0; color: #6b7280; font-size: 0.9rem;">Perfect for dogs to run and play safely</p>
             </div>
           </div>
           <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80" 
-                 alt="Cat relaxing in sunny window of rental home" 
-                 style="width: 100%; height: 250px; object-fit: cover; display: block;">
+            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80"
+              alt="Cat relaxing in sunny window of rental home"
+              style="width: 100%; height: 250px; object-fit: cover; display: block;">
             <div style="padding: 1rem; background: white;">
               <h4 style="margin: 0 0 0.5rem 0; color: #1f2937;">Cozy Indoor Spaces</h4>
               <p style="margin: 0; color: #6b7280; font-size: 0.9rem;">Comfortable areas for cats to lounge</p>
             </div>
           </div>
           <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=800&q=80" 
-                 alt="Family with dog in front of their rental home" 
-                 style="width: 100%; height: 250px; object-fit: cover; display: block;">
+            <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=800&q=80"
+              alt="Family with dog in front of their rental home"
+              style="width: 100%; height: 250px; object-fit: cover; display: block;">
             <div style="padding: 1rem; background: white;">
               <h4 style="margin: 0 0 0.5rem 0; color: #1f2937;">Happy Families</h4>
               <p style="margin: 0; color: #6b7280; font-size: 0.9rem;">Pets and families thriving together</p>
             </div>
           </div>
           <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80" 
-                 alt="Modern pet-friendly rental home exterior" 
-                 style="width: 100%; height: 250px; object-fit: cover; display: block;">
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80"
+              alt="Modern pet-friendly rental home exterior"
+              style="width: 100%; height: 250px; object-fit: cover; display: block;">
             <div style="padding: 1rem; background: white;">
               <h4 style="margin: 0 0 0.5rem 0; color: #1f2937;">Beautiful Homes</h4>
-              <p style="margin: 0; color: #6b7280; font-size: 0.9rem;">Well-maintained properties for you and your pets</p>
+              <p style="margin: 0; color: #6b7280; font-size: 0.9rem;">Well-maintained properties for you and your pets
+              </p>
             </div>
           </div>
         </div>
@@ -255,7 +269,8 @@
           <h3 class="fair-housing-title">Equal Housing Opportunity</h3>
         </div>
         <p class="fair-housing-text">
-          Basil & Sage Homes is committed to compliance with Fair Housing laws, including those that prohibit discrimination
+          Basil & Sage Homes is committed to compliance with Fair Housing laws, including those that prohibit
+          discrimination
           based on race, color, sex, religion, disability, familial status, national origin, and all other classes
           protected by applicable federal, state, and/or local law. It's simply the right thing to do.
         </p>
@@ -267,7 +282,8 @@
           All information provided on this website is subject to change without notice. Property availability, pricing,
           specifications, features, and amenities are subject to change. Square footage and lot sizes are approximate.
           Photos may be of similar properties and may not represent the actual property. All properties are subject to
-          prior sale, rental, or withdrawal. Basil & Sage Homes makes no warranty or representation about the accuracy of the
+          prior sale, rental, or withdrawal. Basil & Sage Homes makes no warranty or representation about the accuracy
+          of the
           information contained herein. Prospective tenants should verify all information independently.
         </p>
       </div>
@@ -275,7 +291,7 @@
       <div class="legal-links">
         <a href="terms.html">Terms of Use</a>
         <a href="privacy.html">Privacy Policy</a>
-        </div>
+      </div>
 
       <div class="copyright-section">
         <p>&copy; <span id="legalYear"></span> Basil & Sage Homes. All rights reserved.</p>

@@ -125,8 +125,8 @@ document.addEventListener("DOMContentLoaded", function () {
     yearSpan.textContent = new Date().getFullYear();
   }
 
-  // Lazy-load all images except ones explicitly marked eager
-  document.querySelectorAll('img:not([data-eager])').forEach((img) => {
+  // Lazy-load all images except ones explicitly marked eager or high priority
+  document.querySelectorAll('img:not([data-eager]):not([fetchpriority="high"])').forEach((img) => {
     if (!img.hasAttribute('loading')) {
       img.setAttribute('loading', 'lazy');
     }

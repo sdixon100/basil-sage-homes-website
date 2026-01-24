@@ -7,15 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Discover our move-in ready rental homes in Ladson, SC. Professionally cleaned, maintained, and ready for immediate occupancy.">
+
+  <!-- Preload critical assets to improve LCP -->
+  <link rel="preload" href="charleston-sc.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="move-in-ready-page">
 
-    <header class="main-header">
+  <header class="main-header">
     <nav class="nav-container">
       <a href="index.html" class="nav-logo">
-        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo">
+        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo" fetchpriority="high" data-eager>
       </a>
       <button class="mobile-menu-btn" aria-label="Toggle menu">
         <span></span>
@@ -39,6 +45,8 @@
   </header>
 
   <header class="hero">
+    <!-- PRIMARY LCP IMAGE - High Priority, Discoverable, Not lazy-loaded -->
+    <img src="charleston-sc.webp" alt="" class="hero-lcp-image" fetchpriority="high">
     <div class="container hero-content">
       <p class="hero-label">Immediate Availability</p>
       <h1>Move-In Ready Homes</h1>
@@ -124,7 +132,8 @@
         <div class="about-content">
           <div class="about-text">
             <h3>Your Move-In Day Package</h3>
-            <p>When you move into a Basil & Sage Homes property, you receive more than just keys to a house - you receive a
+            <p>When you move into a Basil & Sage Homes property, you receive more than just keys to a house - you
+              receive a
               complete move-in experience designed for your convenience.</p>
             <p><strong>Move-In Day Essentials:</strong></p>
             <ul style="color: #6b7280; line-height: 1.8;">
@@ -169,7 +178,8 @@
           <h3 class="fair-housing-title">Equal Housing Opportunity</h3>
         </div>
         <p class="fair-housing-text">
-          Basil & Sage Homes is committed to compliance with Fair Housing laws, including those that prohibit discrimination
+          Basil & Sage Homes is committed to compliance with Fair Housing laws, including those that prohibit
+          discrimination
           based on race, color, sex, religion, disability, familial status, national origin, and all other classes
           protected by applicable federal, state, and/or local law. It's simply the right thing to do.
         </p>
@@ -181,7 +191,8 @@
           All information provided on this website is subject to change without notice. Property availability, pricing,
           specifications, features, and amenities are subject to change. Square footage and lot sizes are approximate.
           Photos may be of similar properties and may not represent the actual property. All properties are subject to
-          prior sale, rental, or withdrawal. Basil & Sage Homes makes no warranty or representation about the accuracy of the
+          prior sale, rental, or withdrawal. Basil & Sage Homes makes no warranty or representation about the accuracy
+          of the
           information contained herein. Prospective tenants should verify all information independently.
         </p>
       </div>
@@ -189,7 +200,7 @@
       <div class="legal-links">
         <a href="terms.html">Terms of Use</a>
         <a href="privacy.html">Privacy Policy</a>
-        </div>
+      </div>
 
       <div class="copyright-section">
         <p>&copy; <span id="legalYear"></span> Basil & Sage Homes. All rights reserved.</p>

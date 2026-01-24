@@ -7,6 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Professional property management services by Basil & Sage Homes in Ladson, SC. Experienced team ensuring smooth, hassle-free rental experiences.">
+
+  <!-- Preload critical assets to improve LCP -->
+  <link rel="preload" href="charleston-sc.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -15,7 +21,7 @@
   <header class="main-header">
     <nav class="nav-container">
       <a href="index.html" class="nav-logo">
-        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo">
+        <img src="basil-sage-logo.svg" alt="Basil & Sage Homes Logo" fetchpriority="high" data-eager>
       </a>
       <button class="mobile-menu-btn" aria-label="Toggle menu">
         <span></span>
@@ -39,6 +45,8 @@
   </header>
 
   <header class="hero">
+    <!-- PRIMARY LCP IMAGE - High Priority, Discoverable, Not lazy-loaded -->
+    <img src="charleston-sc.webp" alt="" class="hero-lcp-image" fetchpriority="high">
     <div class="container hero-content">
       <p class="hero-label">Expert Management</p>
       <h1>Professional Property Management</h1>
