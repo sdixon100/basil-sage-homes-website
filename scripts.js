@@ -2,26 +2,78 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Flag that JS is enabled (used for carousel layout)
   document.body.classList.add('js-enabled');
-  // Mobile menu toggle
   // Mobile menu toggle logic for new header
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navMenu = document.querySelector('.nav-menu');
+  const body = document.body;
+
+  // Create overlay element for mobile menu
+  let mobileOverlay = document.querySelector('.mobile-menu-overlay');
+  if (!mobileOverlay && mobileMenuBtn) {
+    mobileOverlay = document.createElement('div');
+    mobileOverlay.className = 'mobile-menu-overlay';
+    mobileMenuBtn.parentNode.insertBefore(mobileOverlay, mobileMenuBtn);
+  }
+
+  function openMobileMenu() {
+    mobileMenuBtn.classList.add('active');
+    navMenu.classList.add('active');
+    if (mobileOverlay) {
+      mobileOverlay.style.display = 'block';
+      // Trigger reflow for animation
+      mobileOverlay.offsetHeight;
+      mobileOverlay.classList.add('active');
+    }
+    body.style.overflow = 'hidden';
+    // Improve accessibility
+    mobileMenuBtn.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeMobileMenu() {
+    mobileMenuBtn.classList.remove('active');
+    navMenu.classList.remove('active');
+    if (mobileOverlay) {
+      mobileOverlay.classList.remove('active');
+      setTimeout(() => {
+        mobileOverlay.style.display = 'none';
+      }, 300);
+    }
+    body.style.overflow = '';
+    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+  }
 
   if (mobileMenuBtn && navMenu) {
     mobileMenuBtn.addEventListener('click', function () {
-      this.classList.toggle('active');
-      navMenu.classList.toggle('active');
-      document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+      if (navMenu.classList.contains('active')) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
     });
 
     // Close menu when clicking a link
     const navLinks = navMenu.querySelectorAll('a');
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenuBtn.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Close menu when clicking overlay
+    if (mobileOverlay) {
+      mobileOverlay.addEventListener('click', closeMobileMenu);
+    }
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        closeMobileMenu();
+      }
+    });
+
+    // Close menu on window resize (if switching to desktop)
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1023 && navMenu.classList.contains('active')) {
+        closeMobileMenu();
+      }
     });
   }
 

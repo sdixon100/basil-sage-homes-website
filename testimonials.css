@@ -631,3 +631,109 @@ body.testimonials-page {
     padding: 1.5rem 1rem;
   }
 }
+
+/* Extra Small Mobile (max-width: 375px) - iPhone SE */
+@media (max-width: 375px) {
+  .testimonials-slider {
+    padding: 0 1.5rem;
+  }
+
+  .slider-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 1.125rem;
+  }
+
+  .prev-btn {
+    left: -8px;
+  }
+
+  .next-btn {
+    right: -8px;
+  }
+
+  .testimonial-card {
+    padding: 1.25rem 0.875rem;
+    min-height: 340px;
+  }
+
+  .testimonial-text {
+    font-size: 0.95rem;
+    padding: 1rem 0;
+  }
+
+  .testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+  }
+
+  .rating-number {
+    font-size: 2.5rem;
+  }
+
+  .rating-stars {
+    font-size: 1.25rem;
+  }
+
+  .category-card {
+    padding: 1.5rem;
+  }
+
+  .category-icon {
+    font-size: 2.5rem;
+  }
+
+  .category-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .cta-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .testimonials-hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .testimonials-hero h2 {
+    font-size: 1.1rem;
+  }
+}
+
+/* Touch device improvements */
+@media (pointer: coarse) {
+  .slider-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .slider-dot {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slider-dot::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: inherit;
+  }
+
+  .category-card {
+    min-height: 48px;
+  }
+
+  .testimonial-card:hover {
+    transform: none;
+  }
+
+  .testimonial-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}

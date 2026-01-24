@@ -539,6 +539,7 @@
   .search-bar {
     padding: 0.875rem;
     position: static;
+    top: auto;
   }
 
   .search-filters {
@@ -550,8 +551,9 @@
   .btn-filters,
   .btn-save-search {
     width: 100%;
-    min-height: 44px;
-    padding: 0.75rem 1rem;
+    min-height: 48px;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
   }
 
   .listings-controls {
@@ -567,7 +569,8 @@
   .view-btn {
     flex: 1;
     justify-content: center;
-    min-height: 44px;
+    min-height: 48px;
+    font-size: 0.9rem;
   }
 
   .listings-header h1 {
@@ -575,15 +578,95 @@
   }
 
   .results-count {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
   .property-card {
     padding: 0.875rem;
+    flex-direction: column;
+  }
+
+  .property-card-image {
+    width: 100%;
+    height: 220px;
+    border-radius: 8px;
   }
 
   .property-card-content {
+    padding: 1rem 0.5rem;
+  }
+
+  .property-price {
+    font-size: 1.375rem;
+  }
+
+  .property-specs {
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+  }
+
+  .property-address {
+    font-size: 1rem;
+  }
+
+  .map-panel {
+    height: 350px;
+    min-height: 300px;
+  }
+
+  .listings-panel {
+    max-height: 50vh;
+    min-height: 300px;
+  }
+
+  .action-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .property-status {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.625rem;
+  }
+
+  .sort-select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0.875rem 2.5rem 0.875rem 1rem;
+  }
+
+  .search-input {
+    min-height: 48px;
+    font-size: 1rem;
+    padding: 0.875rem 1rem 0.875rem 3rem;
+  }
+
+  .listings-header {
     padding: 1rem;
+  }
+}
+
+/* Extra small mobile styles for listings */
+@media (max-width: 480px) {
+  .listings-container {
+    padding-top: 0;
+  }
+
+  .search-bar {
+    padding: 0.75rem;
+  }
+
+  .filter-select,
+  .btn-filters,
+  .btn-save-search {
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+
+  .property-card-image {
+    height: 200px;
   }
 
   .property-price {
@@ -591,34 +674,40 @@
   }
 
   .property-specs {
-    font-size: 0.875rem;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    font-size: 0.85rem;
+    gap: 0.5rem;
   }
 
   .property-address {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+  }
+
+  .listings-header h1 {
+    font-size: 1.125rem;
   }
 
   .map-panel {
-    height: 400px;
+    height: 300px;
   }
+}
 
-  .listings-panel {
-    max-height: 50vh;
+/* Touch device improvements for listings */
+@media (pointer: coarse) {
+  .property-card {
+    min-height: 48px;
   }
 
   .action-btn {
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
   }
 
-  .property-status {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
-  }
-
-  .sort-select {
-    width: 100%;
+  .filter-select,
+  .btn-filters,
+  .btn-save-search,
+  .view-btn,
+  .sort-select,
+  .search-input {
+    min-height: 48px;
   }
 }
