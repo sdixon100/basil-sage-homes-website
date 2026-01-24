@@ -264,9 +264,11 @@ body {
 .mobile-menu-btn span {
   display: block;
   width: 24px;
-  height: 2px;
+  height: 3px;
+  min-height: 3px;
+  flex-shrink: 0;
   background-color: #333333;
-  margin: 6px auto;
+  margin: 5px auto;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   border-radius: 2px;
 }
