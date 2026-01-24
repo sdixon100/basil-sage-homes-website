@@ -6,12 +6,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInputContainer = document.getElementById('chat-input-container');
 
     let currentStep = 0;
+    let hasUserInteracted = false; // Track if user has interacted with chat
     const userData = {
         foundHome: null,
         name: '',
         location: '',
         wantsTour: null
     };
+
+    // Auto-open chat after 4 seconds on home page (only if user hasn't dismissed it)
+    if (document.body.classList.contains('home-page')) {
+        setTimeout(() => {
+            // Only auto-open if user hasn't already interacted with the chat
+            if (!hasUserInteracted && chatWindow.classList.contains('hidden')) {
+                chatWindow.classList.remove('hidden');
+                if (currentStep === 0 && chatMessages.children.length === 0) {
+                    renderStep();
+                }
+            }
+        }, 4000);
+    }
 
     const steps = [
         {
@@ -53,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     chatToggle.addEventListener('click', () => {
+        hasUserInteracted = true; // User manually interacted
         chatWindow.classList.toggle('hidden');
         if (!chatWindow.classList.contains('hidden') && currentStep === 0 && chatMessages.children.length === 0) {
             renderStep();
@@ -60,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     chatClose.addEventListener('click', () => {
+        hasUserInteracted = true; // User manually closed
         chatWindow.classList.add('hidden');
     });
 
