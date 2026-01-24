@@ -486,8 +486,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
-  /* Behind everything */
+  z-index: 0;
+  /* At 0, it shows on top of parent background but behind entries like overlay */
 }
 
 .hero-video {
@@ -848,6 +848,14 @@ body.property-detail-page .hero-content {
 body.property-detail-page .hero h1 {
   font-size: 2.25rem;
   margin-bottom: 0.75rem;
+}
+
+/* Compare page hero background fix */
+body.compare-page .hero {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(249, 250, 251, 0.4) 100%),
+    url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=60');
+  background-size: cover;
+  background-position: center;
 }
 
 body.property-detail-page .hero h2 {
