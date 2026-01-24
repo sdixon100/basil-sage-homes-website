@@ -35,8 +35,10 @@
   <meta name="geo.position" content="33.0057;-80.1098">
   <meta name="ICBM" content="33.0057, -80.1098">
 
-  <!-- Preload hero poster to improve LCP -->
-  <link rel="preload" href="charleston-sc.webp" as="image">
+  <!-- Preload critical assets to improve LCP -->
+  <link rel="preload" href="charleston-sc.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml">
 
   <!-- Schema.org structured data -->
   <script type="application/ld+json">
@@ -156,6 +158,7 @@
 
   <header class="hero" id="hero-section">
     <video autoplay muted loop playsinline class="hero-video" id="hero-video" preload="none" poster="charleston-sc.webp"
+      fetchpriority="high"
       aria-label="Decorative background video showing beautiful homes in Charleston, South Carolina">
       <source
         src="https://player.vimeo.com/external/371433846.hd.mp4?s=c6a7fc0e9c1e8b4a5d7c3f3f5a8f6f3f3f5a8f6f&profile_id=174"
