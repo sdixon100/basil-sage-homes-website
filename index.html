@@ -38,7 +38,13 @@
   <!-- Preload critical assets to improve LCP -->
   <link rel="preload" href="charleston-sc.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="styles.css" as="style">
-  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml">
+  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
+
+  <!-- Module Preloads to reduce critical path latency -->
+  <link rel="modulepreload" href="scripts.js">
+  <link rel="modulepreload" href="features-carousel.js">
+  <link rel="modulepreload" href="chat.js">
+  <link rel="modulepreload" href="demo-controls.js">
 
   <!-- Schema.org structured data -->
   <script type="application/ld+json">
@@ -183,7 +189,7 @@
     </div>
     <div class="hero-overlay"></div>
     <div class="brand-hero-container">
-      <img src="basil-sage-logo.svg" alt="Basil & Sage Homes" class="hero-logo">
+      <img src="basil-sage-logo.svg" alt="Basil & Sage Homes" class="hero-logo" fetchpriority="high" loading="eager">
       <div class="hero-brand-message hero-text-card">
         <h3 class="brand-headline">Dream Homes. Real-World Rent.</h3>
         <p class="brand-text">

@@ -16,7 +16,10 @@
   <!-- Preload critical assets to improve LCP -->
   <link rel="preload" href="charleston-sc.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="styles.css" as="style">
-  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml">
+  <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
+
+  <!-- Module Preloads to reduce critical path latency -->
+  <link rel="modulepreload" href="scripts.js">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
@@ -92,8 +95,8 @@
   <header class="hero" id="hero-section">
     <!-- PRIMARY LCP IMAGE - High Priority, Discoverable, Not lazy-loaded -->
     <img src="charleston-sc.webp" alt="" class="hero-lcp-image" fetchpriority="high">
-    <video autoplay muted loop playsinline class="hero-video" id="hero-video" preload="auto" poster="charleston-sc.webp" fetchpriority="high"
-      fetchpriority="high"
+    <video autoplay muted loop playsinline class="hero-video" id="hero-video" preload="auto" poster="charleston-sc.webp"
+      fetchpriority="high" fetchpriority="high"
       aria-label="Decorative background video showing beautiful homes in Charleston, South Carolina">
       <source
         src="https://player.vimeo.com/external/371433846.hd.mp4?s=c6a7fc0e9c1e8b4a5d7c3f3f5a8f6f3f3f5a8f6f&profile_id=174"
