@@ -1,5 +1,26 @@
+import { makeDraggable } from './draggable-ui.js';
+
 // FAQ accordion and other functionality
 document.addEventListener("DOMContentLoaded", function () {
+  // ... existing code ...
+
+  // Initialize Draggable Elements
+  // Hero elements
+  const heroLogo = document.querySelector('.hero-logo');
+  const heroTextCard = document.querySelector('.hero-text-card');
+
+  // Chat elements
+  const chatWindow = document.getElementById('chat-window');
+  const chatHeader = document.querySelector('.chat-header');
+
+  if (heroLogo) makeDraggable(heroLogo);
+  if (heroTextCard) makeDraggable(heroTextCard);
+
+  // Only make chat draggable by handle to allow text selection in body
+  if (chatWindow && chatHeader) {
+    makeDraggable(chatWindow, chatHeader);
+  }
+
   // Flag that JS is enabled (used for carousel layout)
   document.body.classList.add('js-enabled');
   // Mobile menu toggle logic for new header
@@ -291,4 +312,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initial run
     handleHeroScroll();
   }
+
+
 });
