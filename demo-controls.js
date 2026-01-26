@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroImageHomes) heroImageHomes.style.display = 'none';
 
     // Show the selected scene
-    switch(scene) {
+    switch (scene) {
       case 'video':
         if (heroVideo) {
           heroVideo.style.display = 'block';
@@ -172,11 +172,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mouseup', dragEnd);
     document.addEventListener('touchend', dragEnd);
 
+    let cardWidth = 0;
+    let cardHeight = 0;
+    let dragTicking = false;
+
     function dragStart(e) {
       // Don't start dragging if clicking the minimize button
       if (e.target.classList.contains('demo-minimize-btn')) {
         return;
       }
+
+      const rect = demoCard.getBoundingClientRect();
+      cardWidth = rect.width;
+      cardHeight = rect.height;
 
       if (e.type === 'touchstart') {
         initialX = e.touches[0].clientX - xOffset;
@@ -207,7 +215,13 @@ document.addEventListener('DOMContentLoaded', () => {
         xOffset = currentX;
         yOffset = currentY;
 
-        setPosition(currentX, currentY);
+        if (!dragTicking) {
+          requestAnimationFrame(() => {
+            setPosition(xOffset, yOffset);
+            dragTicking = false;
+          });
+          dragTicking = true;
+        }
       }
     }
 
@@ -223,15 +237,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setPosition(x, y) {
-      // Keep card within viewport bounds
-      const rect = demoCard.getBoundingClientRect();
-      const maxX = window.innerWidth - rect.width;
-      const maxY = window.innerHeight - rect.height;
+      // Keep card within viewport bounds using cached dimensions
+      const maxX = window.innerWidth - cardWidth;
+      const maxY = window.innerHeight - cardHeight;
 
-      x = Math.max(0, Math.min(x, maxX));
-      y = Math.max(0, Math.min(y, maxY));
+      const finalX = Math.max(0, Math.min(x, maxX));
+      const finalY = Math.max(0, Math.min(y, maxY));
 
-      demoCard.style.transform = `translate(${x}px, ${y}px)`;
+      demoCard.style.transform = `translate(${finalX}px, ${finalY}px)`;
       demoCard.style.right = 'auto';
       demoCard.style.top = 'auto';
       demoCard.style.left = '0';

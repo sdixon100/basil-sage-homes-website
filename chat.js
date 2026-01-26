@@ -84,7 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
         messageDiv.classList.add('message', sender);
         messageDiv.textContent = text;
         chatMessages.appendChild(messageDiv);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Use requestAnimationFrame to avoid forced reflow
+        requestAnimationFrame(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
     }
 
     function renderStep() {

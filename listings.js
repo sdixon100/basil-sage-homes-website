@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Search filter
     if (currentFilters.search) {
       const searchLower = currentFilters.search.toLowerCase();
-      filtered = filtered.filter(prop => 
+      filtered = filtered.filter(prop =>
         prop.address.toLowerCase().includes(searchLower) ||
         prop.city.toLowerCase().includes(searchLower) ||
         prop.zip.includes(searchLower)
@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', function () {
   filterSelects.forEach((select, index) => {
     select.addEventListener('change', (e) => {
       const value = e.target.value;
-      
+
       // Determine which filter based on index or options
       if (index === 1) { // Price filter (second select)
         currentFilters.priceRange = value;
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else if (index === 4) { // Baths filter (fifth select)
         currentFilters.baths = value;
       }
-      
+
       const filtered = filterProperties();
       renderPropertyCards(filtered);
     });
@@ -416,17 +416,31 @@ document.addEventListener('DOMContentLoaded', function () {
     resizer.classList.add('resizing');
   };
 
+  let parentWidth = parentContainer ? parentContainer.clientWidth : 0;
+  let scrollTicking = false;
+
+  window.addEventListener('resize', () => {
+    if (parentContainer) parentWidth = parentContainer.clientWidth;
+  }, { passive: true });
+
   const mouseMoveHandler = function (e) {
+    if (!parentContainer) return;
+
     const dx = e.clientX - x;
     const newLeftWidth = leftWidth + dx;
 
     // Min/Max constraints
-    if (newLeftWidth > 250 && newLeftWidth < parentContainer.clientWidth - 250) {
+    if (newLeftWidth > 250 && newLeftWidth < parentWidth - 250) {
       leftPanel.style.width = `${newLeftWidth}px`;
-      // Because map panel is flex: 1, it auto-adjusts
 
-      // Force map to redraw as size changes
-      map.invalidateSize();
+      // Throttle map invalidation to avoid forced reflow on every pixel change
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          map.invalidateSize();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
     }
   };
 

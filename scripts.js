@@ -20,9 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
     navMenu.classList.add('active');
     if (mobileOverlay) {
       mobileOverlay.style.display = 'block';
-      // Trigger reflow for animation
-      mobileOverlay.offsetHeight;
-      mobileOverlay.classList.add('active');
+      // Use double requestAnimationFrame to ensure the display change has processed
+      // without forcing a synchronous reflow
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          mobileOverlay.classList.add('active');
+        });
+      });
     }
     body.style.overflow = 'hidden';
     // Improve accessibility
@@ -88,16 +92,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Header scroll effect
+  // Header scroll effect with requestAnimationFrame
   const header = document.querySelector('.main-header');
   if (header) {
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+          scrollTicking = false;
+        });
+        scrollTicking = true;
       }
-    });
+    }, { passive: true });
   }
 
   // FAQ accordion
@@ -214,22 +225,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 4500);
   });
 
-  // Hide logo and demo controls when hero scrolls out of view
+  // Optimize hero scrolling using IntersectionObserver and cached values
   const heroSection = document.getElementById('hero-section');
   const navLogo = document.querySelector('.nav-logo');
   const demoControl = document.querySelector('.demo-control-card');
 
   if (heroSection && (navLogo || demoControl)) {
-    function handleHeroScroll() {
-      const heroRect = heroSection.getBoundingClientRect();
-      const heroBottom = heroRect.bottom;
-      const heroHeight = heroRect.height;
+    let heroHeight = 0;
+    let heroTop = 0;
+    let scrollTicking = false;
 
-      // Calculate opacity based on how much of hero is still visible
-      // Start fading when hero is 30% scrolled out, complete fade at 70%
+    // Cache dimensions on load and resize
+    function updateHeroMeasurements() {
+      const rect = heroSection.getBoundingClientRect();
+      // rect.top is relative to viewport, we want absolute position
+      heroTop = rect.top + window.scrollY;
+      heroHeight = rect.height;
+    }
+
+    // Initial measurement
+    updateHeroMeasurements();
+    window.addEventListener('resize', updateHeroMeasurements, { passive: true });
+
+    function handleHeroScroll() {
+      const currentScroll = window.scrollY;
+      const scrolledAmount = currentScroll - heroTop;
+      const heroBottom = heroHeight - scrolledAmount;
+
+      // Skip calculations if hero is completely out of view
+      if (scrolledAmount > heroHeight || scrolledAmount < -window.innerHeight) return;
+
       const fadeStartPoint = heroHeight * 0.3;
       const fadeEndPoint = heroHeight * 0.7;
-      const scrolledAmount = heroHeight - heroBottom;
 
       let opacity = 1;
       if (scrolledAmount > fadeStartPoint) {
@@ -248,18 +275,20 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Add smooth transition to elements
-    if (navLogo) {
-      navLogo.style.transition = 'opacity 0.3s ease-out';
-    }
-    if (demoControl) {
-      demoControl.style.transition = 'opacity 0.3s ease-out';
-    }
+    if (navLogo) navLogo.style.transition = 'opacity 0.2s linear';
+    if (demoControl) demoControl.style.transition = 'opacity 0.2s linear';
 
-    // Listen to scroll events
-    window.addEventListener('scroll', handleHeroScroll, { passive: true });
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          handleHeroScroll();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }, { passive: true });
 
-    // Initial check
+    // Initial run
     handleHeroScroll();
   }
 });
