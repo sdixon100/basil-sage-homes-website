@@ -141,6 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Make demo card draggable
   if (demoCard) {
+    let cardWidth = 0;
+    let cardHeight = 0;
+    let dragTicking = false;
     let isDragging = false;
     let currentX;
     let currentY;
@@ -155,6 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const { x, y } = JSON.parse(savedPosition);
       xOffset = x;
       yOffset = y;
+
+      // We need initial dimensions for setPosition to work correctly
+      const rect = demoCard.getBoundingClientRect();
+      cardWidth = rect.width;
+      cardHeight = rect.height;
+
       setPosition(x, y);
     }
 
@@ -168,13 +177,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     document.addEventListener('mousemove', drag);
-    document.addEventListener('touchmove', drag);
+    document.addEventListener('touchmove', drag, { passive: false });
     document.addEventListener('mouseup', dragEnd);
     document.addEventListener('touchend', dragEnd);
-
-    let cardWidth = 0;
-    let cardHeight = 0;
-    let dragTicking = false;
 
     function dragStart(e) {
       // Don't start dragging if clicking the minimize button
