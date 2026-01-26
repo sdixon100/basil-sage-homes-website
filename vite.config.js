@@ -38,6 +38,15 @@ export default defineConfig({
         'property-987-birch': resolve(__dirname, 'property-987-birch.html'),
         terms: resolve(__dirname, 'terms.html'),
         testimonials: resolve(__dirname, 'testimonials.html')
+      },
+      output: {
+        assetFileNames: (assetInfo) => {
+          // Preserve .htaccess filename without hash
+          if (assetInfo.name === '.htaccess') {
+            return '[name][extname]';
+          }
+          return 'assets/[name]-[hash][extname]';
+        }
       }
     },
     assetsInlineLimit: 0,
