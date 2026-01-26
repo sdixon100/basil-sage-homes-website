@@ -13,15 +13,15 @@
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.basilandsagehomes.com/">
 
-  <!-- Critical CSS - Load Immediately -->
+  <!-- Critical CSS - Priority Loading -->
   <link rel="stylesheet" href="styles.css" fetchpriority="high">
 
-  <!-- Preload LCP Image -->
+  <!-- Preload Critical LCP Assets -->
   <link rel="preload" href="charleston-sc.webp" as="image" type="image/webp" fetchpriority="high">
   <link rel="preload" href="basil-sage-logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
 
-  <!-- Module Preloads -->
-  <link rel="modulepreload" href="scripts.js">
+  <!-- Component Preloads -->
+  <link rel="modulepreload" href="scripts.js" fetchpriority="high">
   <link rel="modulepreload" href="features-carousel.js">
   <link rel="modulepreload" href="chat.js">
   <link rel="modulepreload" href="demo-controls.js">
@@ -88,7 +88,7 @@
   }
   </script>
 
-  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
   <link rel="preconnect" href="https://player.vimeo.com">
 </head>
 
@@ -563,7 +563,7 @@
     document.getElementById('legalYear').textContent = new Date().getFullYear();
   </script>
 
-  <script type="module" src="scripts.js"></script>
+  <script type="module" src="scripts.js" fetchpriority="high"></script>
   <script type="module" src="features-carousel.js"></script>
   <script type="module" src="chat.js"></script>
 
