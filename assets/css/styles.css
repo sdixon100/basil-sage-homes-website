@@ -764,62 +764,22 @@ body.js-enabled .features-carousel .features-grid {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* Getting the image URL from inline style requires structure change or JS, 
-     but since inline styles are on the parent div, we need a slight adjustment strategy.
-     Actually, since the current HTML has inline styles on the div, 
-     we can't easily move that to a pseudo-element with just CSS.
-     
-     ALTERNATIVE STRATEGY: Scale the DIV, but counter-scale the Children? No, messy.
-     BETTER STRATEGY: Target the div itself but we MUST ensure children are separate.
-     
-     Wait, the HTML is:
-     <div class="home-image" style="background-image: ...">
-       <span class="home-badge">...</span>
-     </div>
-     
-     If we scale .home-image, the badge scales.
-     
-     Let's use a nested structure approach or just accept the CSS-only limitation?
-     Actually, we can use 'background-size: 110%' transition (what we had) OR
-     Use a dedicated child element.
-     
-     For 'High Quality', the User likely wants 'transform: scale'.
-     
-     Let's Try:
-     .home-image { overflow: hidden; }
-     .home-image .bg-layer { ... transition: transform ... }
-     
-     But we can't edit HTML in this step (easily for all items).
-     
-     Let's stick to the CSS-only improvement first:
-     Using a slightly better transition curve on background-size?
-     OR 
-     Can we inherit the background image in the pseudo element?
-     background-image: inherit; 
-     
-     Let's try sticking 'inherit' on the pseudo-element!
-  */
+  
   background-image: inherit;
   transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: -1;
   /* Behind content */
 }
 
-/* Ensure the parent doesn't show the background twice or interfere */
-/* However, inline style is on parent. We need to hide it on parent but show on child? */
-/* A trick: set parent background-size to 0? or visibility? No. */
+/* Ensure the parent doesn't show the background twice*/
 
-/* Let's Try `background-blend-mode` trick or just use the smooth transform on the parent 
-/* .home-card already has overflow: hidden defined above */
-
-/* REVISED IMPLEMENTATION: Use ::before for image zoom, keeping badges stable */
 .home-image {
   height: 500px;
   position: relative;
   overflow: hidden;
 }
 
-/* The actual background image is on ::before so we can scale it independently */
+
 .home-image::before {
   content: '';
   position: absolute;
@@ -1206,7 +1166,7 @@ nav {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* ENHANCEMENTS */
+
 .home-badge {
   position: absolute;
   top: 1rem;
@@ -1233,9 +1193,9 @@ nav {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* RESPONSIVE DESIGN */
+/* RESPONSIVE MOBILE below */
 
-/* Mobile Navigation Toggle */
+
 .mobile-menu-toggle {
   display: none;
   background: none;
@@ -1763,9 +1723,7 @@ nav {
   }
 }
 
-/* =========================================
-   LEGAL FOOTER STYLES (Standardized)
-   ========================================= */
+
 .legal-footer {
   background: linear-gradient(135deg, rgba(255, 244, 214, 0.55) 0%, rgba(255, 233, 190, 0.48) 50%, rgba(255, 244, 214, 0.55) 100%);
   backdrop-filter: blur(30px) saturate(200%) brightness(1.1);
@@ -1777,7 +1735,7 @@ nav {
   box-shadow: 0 -8px 32px rgba(118, 86, 32, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
-/* FIX: Prevent global Liquid Glass styling from affecting the footer container */
+/* FIX: Prevent global Liquid Glass */
 body .legal-footer .container,
 body .footer .container {
   background: transparent !important;
@@ -1804,7 +1762,7 @@ body .footer .container {
   text-shadow: none !important;
 }
 
-/* Footer Equal Housing Image Styles */
+
 .footer-equal-housing {
   display: flex;
   align-items: center;
@@ -1825,7 +1783,7 @@ body .footer .container {
   border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
-/* Ensure footer text is visible against light background */
+/* footer text is visible  */
 .legal-footer h3,
 .legal-footer h4,
 .legal-footer p,
@@ -2011,7 +1969,7 @@ body .footer .container {
   border-radius: 6px;
 }
 
-/* Standardized Legal Page Content Styles */
+
 .policy-content {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(16px);
@@ -2081,7 +2039,7 @@ body .footer .container {
   display: block;
 }
 
-/* Legal Page Specific Helper Classes */
+
 .info-box {
   background: rgba(250, 242, 226, 0.85);
   border-left: 4px solid #d2b48c;

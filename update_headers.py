@@ -36,8 +36,7 @@ def update_file(filepath):
         print(f"Skipping {filepath} (already updated)")
         return
 
-    # Regex to find <nav> block
-    # Matches <nav> or <nav class="..."> ... </nav>
+
     # Uses DOTALL to match across lines
     pattern = re.compile(r'<nav.*?>.*?</nav>', re.DOTALL)
     
