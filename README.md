@@ -10,7 +10,7 @@ Professional property management and rental homes website for Ladson, SC area.
 - **SEO Optimized**: Meta tags, structured data, and sitemap
 - **Interactive Maps**: Property location visualization
 - **Testimonials**: Customer reviews and ratings
-- **AI Chat Support**: Integrated chat functionality
+- **AI Chat Support**: Integrated chat functionality - needs to be tested 
 
 
 
